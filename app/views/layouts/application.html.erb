@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Logicode eCommerce</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class='<%= controller.controller_name %>'>
+    <div id="banner">
+      <%= image_tag 'logoNewCompressed.png', alt: 'The Pragmatic Bookshelf' %>
+      <span class="title"><%= @page_title %></span>
+    </div>
+    <%= yield %>
+    <div id="cart">
+      <% if @cart %>
+        <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+          <%= render @cart %>
+        <% end %>
+      <% end %>
+    </div>
+  </body>
+</html>
